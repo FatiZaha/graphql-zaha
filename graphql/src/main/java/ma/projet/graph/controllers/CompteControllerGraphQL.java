@@ -10,10 +10,11 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @AllArgsConstructor
 
@@ -122,5 +123,10 @@ public class CompteControllerGraphQL {
                 "sumDepots",sumDepots,
                 "sumRetraits",sumRetraits
         );
+    }
+
+    @QueryMapping
+    public List<Transaction> allTransactions(){
+        return transactionRepository.findAll();
     }
 }
